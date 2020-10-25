@@ -10,7 +10,7 @@ int main() {
 	CTable tab0, tab1;
 	tab0.resizeTab(6);
 	tab1.resizeTab(4);
-	//tu rzuca wyjatkiem dotyczacym kopca
 	tab0 = tab1;
+	//tu rzuca wyjatkiem dotyczacym kopca
 	return 0;
 }
