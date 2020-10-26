@@ -25,7 +25,7 @@ public:
 
 	CTable(const CTable& oldCTable);
 
-	//~CTable();
+	~CTable();
 
 	CTable* pcClone();
 
@@ -46,6 +46,8 @@ public:
 	void printTab();
 
 	int* operator+ (const CTable & other);
+
+	int operator = (const CTable& other);
 };
 
 void modTabSize(CTable* tab, int newSize);

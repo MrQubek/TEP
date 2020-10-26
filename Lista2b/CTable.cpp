@@ -37,11 +37,11 @@ CTable::CTable(const CTable& oldCTable) {
 	std::cout << CTABLE_COPING << oldCTable.tabName << C_NEW_LINE;
 }
 
-/*CTable::~CTable() {
+CTable::~CTable() {
 	delete[]tab;
 	std::cout << CTABLE_DELETING << tabName << C_NEW_LINE;
 }
-*/
+
 
 CTable* CTable::pcClone() {
 	//CTable* ptr = new CTable(*this);
@@ -115,12 +115,21 @@ int* CTable::operator+ (const CTable& other) {
 			ptr[index] = tab[index];
 		}
 		for (; index < other.tabSize+this->tabSize; index++) {
-			ptr[index] = tab[index - this->tabSize];
+			ptr[index] = other.tab[index - this->tabSize];
 		}
 		return ptr;
 	}
 	return NULL;
 }
+
+int CTable::operator = (const CTable& other) {
+	delete[] tab;
+	initVariables(other.tabName, other.tabSize);
+	copyTabValues(other);
+	return sizeof(other);
+}
+
+
 
 void modTabSize(CTable* tab, int newSize) {
 	tab->resizeTab(newSize);
