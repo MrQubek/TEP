@@ -13,12 +13,17 @@ void CTable::initVariables(const std::string& tabName, const int& tabSize) {
 	}
 }
 
-void CTable::copyTabValues(const CTable& oldCTable) {
+void CTable::copyTabValues(const CTable& otherCTable) {
 	if (tab != NULL) {
 		for (int i = 0; i < tabSize; i++) {
-			tab[i] = oldCTable.tab[i];
+			tab[i] = otherCTable.tab[i];
 		}
 	}
+}
+
+void CTable::copy(const CTable& otherCTable) {
+	initVariables(otherCTable.tabName, otherCTable.tabSize);
+	copyTabValues(otherCTable);
 }
 
 CTable::CTable() {
@@ -31,10 +36,10 @@ CTable::CTable(const std::string& tabName, const int& tabSize) {
 	std::cout << CTABLE_PARAMETR << this->tabName << C_NEW_LINE;
 }
 
-CTable::CTable(const CTable& oldCTable) {
-	initVariables(oldCTable.tabName + CTABLE_COPY, oldCTable.tabSize);
-	copyTabValues(oldCTable);
-	std::cout << CTABLE_COPING << oldCTable.tabName << C_NEW_LINE;
+CTable::CTable(const CTable& otherCTable) {
+	initVariables(otherCTable.tabName + CTABLE_COPY, otherCTable.tabSize);
+	copyTabValues(otherCTable);
+	std::cout << CTABLE_COPING << otherCTable.tabName << C_NEW_LINE;
 }
 
 CTable::~CTable() {
@@ -124,8 +129,7 @@ int* CTable::operator+ (const CTable& other) {
 
 int CTable::operator = (const CTable& other) {
 	delete[] tab;
-	initVariables(other.tabName, other.tabSize);
-	copyTabValues(other);
+	copy(other);
 	return sizeof(other);
 }
 

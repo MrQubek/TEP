@@ -15,7 +15,9 @@ private:
 
 	void initVariables(const std::string& tabName, const int& tabSize);
 
-	void copyTabValues(const CTable& oldCTable);
+	void copyTabValues(const CTable& otherCTable);
+
+	void copy(const CTable& otherCTable);
 
 public:
 
@@ -23,7 +25,7 @@ public:
 
 	CTable(const std::string& tabName, const int& tabSize);
 
-	CTable(const CTable& oldCTable);
+	CTable(const CTable& otherCTable);
 
 	~CTable();
 
