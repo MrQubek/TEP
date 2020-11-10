@@ -47,9 +47,13 @@ public:
 
 	void printTab();
 
-	int* operator+ (const CTable & other);
+	CTable& operator = (const CTable& other);
 
-	int operator = (const CTable& other);
+	CTable& operator + (const CTable& other);
+
+	CTable& operator * (const int value);
+
+	void operator *= (const int value);
 };
 
 void modTabSize(CTable* tab, int newSize);

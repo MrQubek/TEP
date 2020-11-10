@@ -58,6 +58,8 @@ CTable* CTable::pcClone() {
 std::string CTable::toString() {
 	std::string st;
 	std::stringstream out;
+
+	out.str(tabName + C_SPACE);
 	for (int i = 0; i < tabSize; i++) {
 		out << tab[i] << C_SPACE;
 		st = out.str();
@@ -106,34 +108,46 @@ void CTable::setTabElem(int index, int newElem) {
 }
 
 void CTable::printTab() {
+	std::cout << tabName << C_SPACE;
 	for (int i = 0; i < tabSize; i++) {
 		std::cout << tab[i] << C_SPACE;
 	}
 	std::cout << C_NEW_LINE;
 }
 
-int* CTable::operator+ (const CTable& other) {
-	int* ptr = new(std::nothrow) int[this->tabSize + other.tabSize];
-	if (ptr != NULL) {
-		int index = 0;
-		for (; index < this->tabSize; index++) {
-			ptr[index] = tab[index];
-		}
-		for (; index < other.tabSize+this->tabSize; index++) {
-			ptr[index] = other.tab[index - this->tabSize];
-		}
-		return ptr;
-	}
-	return NULL;
-}
-
-int CTable::operator = (const CTable& other) {
+CTable& CTable::operator = (const CTable& other) {
 	delete[] tab;
 	copy(other);
-	return sizeof(other);
+	return *this;
 }
 
+CTable& CTable::operator+ (const CTable& other) {
+	CTable *newTab=new CTable(tabName, this->tabSize+other.tabSize);
+	if (newTab->getTabSize()!=0) {
+		int index = 0;
+		for (; index < this->tabSize; index++) {
+			newTab->setTabElem(index,tab[index]);
+		}
+		for (; index < other.tabSize + this->tabSize; index++) {
+			newTab->setTabElem(index, other.tab[index - this->tabSize]);
+		}
+	}
+	return *newTab;
+}
 
+CTable& CTable::operator * (const int value) {
+	CTable *newTab=new CTable(tabName, tabSize);
+	for (int i = 0; i < tabSize; i++) {
+		newTab->setTabElem(i, this->getTabElem(i) * value);
+	}
+	return *newTab;
+}
+
+void CTable::operator *= (const int value) {
+	for (int i = 0; i < tabSize; i++) {
+		this->setTabElem(i, this->getTabElem(i) * value);
+	}
+}
 
 void modTabSize(CTable* tab, int newSize) {
 	tab->resizeTab(newSize);
