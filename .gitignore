@@ -338,3 +338,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/Lista3a_StaticTree_StaticNode/Lista3a_StaticTree_StaticNode.vcxproj
+/Lista3a_StaticTree_StaticNode/Lista3a_StaticTree_StaticNode.vcxproj.filters
