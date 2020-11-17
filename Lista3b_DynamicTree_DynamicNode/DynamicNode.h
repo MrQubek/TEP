@@ -18,11 +18,11 @@ public:
 
 	~DynamicNode();
 
-	void setVal(int newValue);
+	void setValue(int newValue);
 
 	void setParent(DynamicNode* newParent);
 
-	bool deleteChild(DynamicNode* childPtr);
+	bool deleteChildFromVector(DynamicNode* childPtr);
 
 	int getChildrenNumber();
 

@@ -20,4 +20,6 @@ public:
 
 	bool moveSubtree(DynamicNode* newParent, DynamicNode* newChild);
 
+	void buildDefaultTestTree();
+
 };
