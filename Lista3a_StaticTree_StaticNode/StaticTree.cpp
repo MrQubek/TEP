@@ -1,11 +1,10 @@
+#include "StaticTree.h"
 
-#include"StaticNode.h"
-#include"StaticTree.h"
-#include"const.h"
+StaticTree::StaticTree() {}
 
-void treeTest()
-{
-	StaticNode root;
+StaticTree::~StaticTree() {}
+
+void StaticTree::buildDefaultTestTree() {
 	root.addNewChild();
 	root.addNewChild();
 	root.getChild(0)->setValue(NODE_1_VAL);
@@ -18,21 +17,12 @@ void treeTest()
 	root.getChild(1)->addNewChild();
 	root.getChild(1)->getChild(0)->setValue(NODE_21_VAL);
 	root.getChild(1)->getChild(1)->setValue(NODE_22_VAL);
+}
 
+StaticNode* StaticTree::getRoot() {
+	return &root;
+}
+
+void StaticTree::printTree() {
 	root.printAllBelow();
-
-	root.getChild(1)->getChild(1)->printUp();
-} 
-
-int main() {
-	
-	treeTest();
-	
-	std::cout << NEW_LINE;
-
-	StaticTree stTree;
-	stTree.buildDefaultTestTree();
-	stTree.printTree();
-
-	return 0;
 }

@@ -1,8 +1,9 @@
-#pragma once
+
+#ifndef STATICNODE
+#define STATICNODE
 
 #include <vector>
 #include <iostream>
-
 
 class StaticNode
 {
@@ -19,15 +20,22 @@ public:
 
 	void setValue(int newValue);
 
+	void setParent(StaticNode* newParent);
+
 	int getChildrenNumber();
 
-	void addNewChildren(StaticNode newChildren);
+	void addNewChild();
+	
+	void addNewChild(StaticNode newChildren);
 
-	StaticNode* getChild(int whichOne);
+	StaticNode* getChild(unsigned int whichOne);
 
 	void print();
 
 	void printAllBelow();
 
+	void printUp();
+
 };
 
+#endif // !STATICNODE
