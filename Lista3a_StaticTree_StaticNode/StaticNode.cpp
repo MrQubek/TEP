@@ -24,9 +24,8 @@ int StaticNode::getChildrenNumber() {
 }
 
 void StaticNode::addNewChild() {
-	StaticNode tmp;
-	tmp.setParent(this);
-	childrenVector.push_back(tmp);
+	childrenVector.push_back(StaticNode());
+	childrenVector.back().setParent(this);
 }
 
 void StaticNode::addNewChild(StaticNode newChildren) {
