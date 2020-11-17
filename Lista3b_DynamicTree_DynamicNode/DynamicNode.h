@@ -20,11 +20,19 @@ public:
 
 	void setVal(int newValue);
 
+	void setParent(DynamicNode* newParent);
+
+	bool deleteChild(DynamicNode* childPtr);
+
 	int getChildrenNumber();
 
 	void addNewChild();
 
+	void addNewChild(DynamicNode* newChildPtr);
+
 	DynamicNode* getChildPtr(unsigned int whichOne);
+
+	DynamicNode* getParentPtr();
 
 	void print();
 

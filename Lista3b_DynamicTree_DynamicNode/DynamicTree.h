@@ -27,5 +27,8 @@ public:
 		root->printAllBelow();
 	}
 
-};
+	bool moveSubtree(DynamicNode* newParent, DynamicNode* newChild) {
+		newParent->addNewChild(newChild);
+	}
 
+};
