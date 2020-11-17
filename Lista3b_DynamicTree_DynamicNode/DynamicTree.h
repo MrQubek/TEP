@@ -10,25 +10,14 @@ private:
 
 public:
 
-	DynamicTree() {
-		root = new DynamicNode();
-	}
+	DynamicTree();
 
-	~DynamicTree() {
-		root->~DynamicNode();
-		delete root;
-	}
+	~DynamicTree();
 
-	DynamicNode* getRoot() {
-		return root;
-	}
+	DynamicNode* getRoot();
 
-	void printTree() {
-		root->printAllBelow();
-	}
+	void printTree();
 
-	bool moveSubtree(DynamicNode* newParent, DynamicNode* newChild) {
-		newParent->addNewChild(newChild);
-	}
+	bool moveSubtree(DynamicNode* newParent, DynamicNode* newChild);
 
 };
