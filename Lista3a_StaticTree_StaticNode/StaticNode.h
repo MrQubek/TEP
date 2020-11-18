@@ -20,13 +20,19 @@ public:
 
 	void setValue(int newValue);
 
+	int getValue();
+
 	void setParent(StaticNode* newParent);
 
 	int getChildrenNumber();
 
 	void addNewChild();
-	
+
 	void addNewChild(StaticNode newChildren);
+
+	bool removeChildFromParent();
+
+	bool removeChildFromVector(StaticNode* childPtr);
 
 	StaticNode* getChild(unsigned int whichOne);
 
@@ -35,6 +41,7 @@ public:
 	void printAllBelow();
 
 	void printUp();
+
 
 };
 

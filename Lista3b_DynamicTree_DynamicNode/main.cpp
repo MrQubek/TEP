@@ -20,6 +20,8 @@ void treeTest()
 	root->getChildPtr(1)->getChildPtr(1)->setValue(NODE_22_VAL);
 
 	root->printAllBelow();
+
+	delete root;
 }
 
 int main() {

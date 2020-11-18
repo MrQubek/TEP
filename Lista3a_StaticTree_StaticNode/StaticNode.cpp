@@ -7,12 +7,17 @@ StaticNode::StaticNode(int newValue, StaticNode* parentNode) {
 }
 
 StaticNode::~StaticNode() {
-
+	//std::cout << "Delete node with val " << value<<'\n';
 }
 
 void StaticNode::setValue(int newValue) {
 	value = newValue;
 }
+
+int StaticNode::getValue() {
+	return value;
+}
+
 
 void StaticNode::setParent(StaticNode* newParent) {
 	parentPtr = newParent;
@@ -29,8 +34,29 @@ void StaticNode::addNewChild() {
 }
 
 void StaticNode::addNewChild(StaticNode newChildren) {
-	newChildren.setParent(this);
 	childrenVector.push_back(newChildren);
+	childrenVector.back().setParent(this);
+
+}
+
+bool StaticNode::removeChildFromParent() {
+	if (parentPtr != NULL) {
+		return parentPtr->removeChildFromVector(this);
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool StaticNode::removeChildFromVector(StaticNode* childPtr) {
+	for (unsigned int i = 0; i < childrenVector.size(); i++) {
+		if (&childrenVector[i] == childPtr) {
+			childrenVector.erase(childrenVector.begin() + i);
+			return true;
+		}
+	}
+	return false;
 }
 
 StaticNode* StaticNode::getChild(unsigned int whichOne) {
@@ -59,3 +85,5 @@ void StaticNode::printUp() {
 		parentPtr->printUp();
 	}
 }
+
+

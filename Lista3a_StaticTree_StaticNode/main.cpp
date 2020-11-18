@@ -34,5 +34,11 @@ int main() {
 	stTree.buildDefaultTestTree();
 	stTree.printTree();
 
+	std::cout << NEW_LINE;
+
+	stTree.moveSubtree(stTree.getRoot()->getChild(1), stTree.getRoot()->getChild(0));
+	stTree.printTree();
+
+
 	return 0;
 }

@@ -22,7 +22,9 @@ public:
 
 	void setParent(DynamicNode* newParent);
 
-	bool deleteChildFromVector(DynamicNode* childPtr);
+	bool removeFromParent();
+
+	bool removeChildFromVector(DynamicNode* childPtr);
 
 	int getChildrenNumber();
 
