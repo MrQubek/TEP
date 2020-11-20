@@ -1,4 +1,8 @@
 
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
 #include"DynamicNode.h"
 #include"DynamicTree.h"
 #include"const.h"
@@ -30,14 +34,18 @@ int main() {
 
 	std::cout << NEW_LINE;
 
-	DynamicTree tree;
-	tree.buildDefaultTestTree();
-	tree.printTree();
+	DynamicTree *tree=new DynamicTree();
+	tree->buildDefaultTestTree();
+	tree->printTree();
 
 	std::cout << NEW_LINE;
 
-	tree.moveSubtree(tree.getRoot()->getChildPtr(1), tree.getRoot()->getChildPtr(0));
-	tree.printTree();
+	tree->moveSubtree(tree->getRoot()->getChildPtr(1), tree->getRoot()->getChildPtr(0));
+	tree->printTree();
+
+	delete tree;
+
+	_CrtDumpMemoryLeaks();
 
 	return 0;
 
