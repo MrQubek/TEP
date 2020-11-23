@@ -18,6 +18,10 @@ public:
 
 	~StaticNode();
 
+	StaticNode(const StaticNode& other);
+
+	StaticNode* operator = (const StaticNode& other);
+
 	void setValue(int newValue);
 
 	int getValue();
@@ -42,6 +46,7 @@ public:
 
 	void printUp();
 
+	StaticNode* getParentPtr();
 
 };
 

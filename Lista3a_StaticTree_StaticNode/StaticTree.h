@@ -22,20 +22,9 @@ public:
 
 	void printTree();
 
-	bool moveSubtree(StaticNode* newParent, StaticNode* newChild) {
-		if (newParent == newChild || newChild == NULL) {
-			return false;
-		}
-		else
-		{
-			newParent->addNewChild(StaticNode(newChild->getValue(), newParent));
-			while (newChild->getChildrenNumber() > 0)
-			{
-				moveSubtree((newParent->getChild(newParent->getChildrenNumber() - 1)), newChild->getChild(0));
-			}
-			newChild->removeChildFromParent();
-			return true;
-		}
-	}
+	bool moveSubtree(StaticNode* newParent, StaticNode* newChild);
+
+	bool from_the_same_tree(StaticNode* first, StaticNode* second);
+
 };
 

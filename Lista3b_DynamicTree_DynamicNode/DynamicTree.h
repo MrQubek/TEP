@@ -22,4 +22,6 @@ public:
 
 	void buildDefaultTestTree();
 
+	bool from_the_same_tree(DynamicNode* first, DynamicNode* second);
+
 };

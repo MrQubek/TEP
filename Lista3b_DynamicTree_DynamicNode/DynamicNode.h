@@ -1,6 +1,7 @@
 #pragma once
 #include<vector>
 #include <iostream>
+#include"const.h"
 
 class DynamicNode
 {
@@ -20,6 +21,8 @@ public:
 
 	void setValue(int newValue);
 
+	int getValue();
+
 	void setParent(DynamicNode* newParent);
 
 	bool removeFromParent();
@@ -32,13 +35,15 @@ public:
 
 	void addNewChild(DynamicNode* newChildPtr);
 
-	DynamicNode* getChildPtr(unsigned int whichOne);
+	DynamicNode* getChild(unsigned int whichOne);
 
 	DynamicNode* getParentPtr();
 
 	void print();
 
 	void printAllBelow();
+
+
 
 };
 

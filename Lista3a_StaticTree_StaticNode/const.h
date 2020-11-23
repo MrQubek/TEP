@@ -7,3 +7,7 @@ const int NODE_12_VAL = 12;
 const int NODE_21_VAL = 21;
 const int NODE_22_VAL = 22;
 const char NEW_LINE = '\n';
+const char SPACE = ' ';
+const char SEPARATOR = '|';
+const std::string BRANCHES_IN_TREE= "Branches are in the same tree\n";
+const std::string BRANCHES_NOT_IN_TREE = "Branches are not in the same tree\n";

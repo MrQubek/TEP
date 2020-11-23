@@ -9,6 +9,7 @@ void DynamicNode::deleteAllChildren() {
 DynamicNode::DynamicNode(int newValue, DynamicNode* newParent) {
 	value = newValue;
 	parentPtr = newParent;
+	//std::cout << "Create node with val " << value << '\n';
 }
 
 DynamicNode::~DynamicNode() {
@@ -20,6 +21,11 @@ void DynamicNode::setValue(int newValue) {
 	value = newValue;
 }
 
+int DynamicNode::getValue() {
+	return value;
+}
+
+
 void DynamicNode::setParent(DynamicNode* newParent) {
 	parentPtr = newParent;
 }
@@ -27,13 +33,10 @@ void DynamicNode::setParent(DynamicNode* newParent) {
 bool DynamicNode::removeFromParent() {
 	if (parentPtr != NULL) {
 		return parentPtr->removeChildFromVector(this);
-	}
-	else
-	{
+	} else {
 		return false;
 	}
 }
-
 
 bool DynamicNode::removeChildFromVector(DynamicNode* childPtr) {
 	for (unsigned int i = 0; i < childrenVector.size(); i++) {
@@ -62,7 +65,7 @@ void DynamicNode::addNewChild(DynamicNode* newChildPtr) {
 }
 
 
-DynamicNode* DynamicNode::getChildPtr(unsigned int whichOne) {
+DynamicNode* DynamicNode::getChild(unsigned int whichOne) {
 	if (whichOne > childrenVector.size() || whichOne < 0) {
 		return NULL;
 	}

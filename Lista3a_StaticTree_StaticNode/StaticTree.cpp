@@ -24,5 +24,58 @@ StaticNode* StaticTree::getRoot() {
 }
 
 void StaticTree::printTree() {
-	root.printAllBelow();
+	std::vector<StaticNode* > nodesToPrint;
+	nodesToPrint.push_back(&root);
+	int nodesAtCurrentLvl = 1;
+	int nodesAtNextLvl = 0;
+	do {
+		std::cout << nodesToPrint[0]->getValue() << SPACE << nodesToPrint[0]->getChildrenNumber() << SEPARATOR;
+		nodesAtCurrentLvl--;
+		for (size_t i = 0; i < nodesToPrint[0]->getChildrenNumber(); i++)
+		{
+			nodesToPrint.push_back(nodesToPrint[0]->getChild(i));
+			nodesAtNextLvl++;
+		}
+		nodesToPrint.erase(nodesToPrint.begin());
+		if (nodesAtCurrentLvl == 0) {
+			nodesAtCurrentLvl = nodesAtNextLvl;
+			nodesAtNextLvl = 0;
+			std::cout << NEW_LINE;
+		}
+	} while (!nodesToPrint.empty());
+}
+
+bool StaticTree::moveSubtree(StaticNode* newParent, StaticNode* newChild) {
+	if (newParent == NULL || newChild == NULL) {
+		return false;
+	}
+	else {
+		newParent->addNewChild(*newChild);
+		if (newChild->getParentPtr()!=NULL)
+		{
+			newChild->removeChildFromParent();
+		}
+		return true;
+	}
+}
+
+bool StaticTree::from_the_same_tree(StaticNode* first, StaticNode* second) {
+	if (first->getParentPtr() == NULL && second->getParentPtr() == NULL) {
+		if (first == second) {
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else {
+		if (first->getParentPtr() != NULL) {
+			return (from_the_same_tree(first->getParentPtr(), second));
+		}
+		else if (second->getParentPtr() != NULL)
+		{
+			return (from_the_same_tree(first, second->getParentPtr()));
+		}
+	}
 }

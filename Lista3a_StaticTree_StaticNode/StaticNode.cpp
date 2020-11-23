@@ -2,12 +2,24 @@
 
 StaticNode::StaticNode(int newValue, StaticNode* parentNode) {
 	value = newValue;
-	childrenVector = std::vector<StaticNode>();
 	parentPtr = parentNode;
 }
 
 StaticNode::~StaticNode() {
 	//std::cout << "Delete node with val " << value<<'\n';
+}
+
+StaticNode::StaticNode(const StaticNode& other) {
+	value = other.value;
+	parentPtr = other.parentPtr;
+	childrenVector = other.childrenVector;
+}
+
+StaticNode* StaticNode::operator = (const StaticNode& other) {
+	value = other.value;
+	parentPtr = other.parentPtr;
+	childrenVector = other.childrenVector;
+	return this;
 }
 
 void StaticNode::setValue(int newValue) {
@@ -86,4 +98,7 @@ void StaticNode::printUp() {
 	}
 }
 
+StaticNode* StaticNode::getParentPtr() {
+	return parentPtr;
+}
 
