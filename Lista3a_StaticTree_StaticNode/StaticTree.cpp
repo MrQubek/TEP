@@ -59,7 +59,7 @@ bool StaticTree::moveSubtree(StaticNode* newParent, StaticNode* newChild) {
 	}
 }
 
-bool StaticTree::from_the_same_tree(StaticNode* first, StaticNode* second) {
+bool StaticTree::fromTheSameTree(StaticNode* first, StaticNode* second) {
 	if (first->getParentPtr() == NULL && second->getParentPtr() == NULL) {
 		if (first == second) {
 			return true;
@@ -71,11 +71,11 @@ bool StaticTree::from_the_same_tree(StaticNode* first, StaticNode* second) {
 	}
 	else {
 		if (first->getParentPtr() != NULL) {
-			return (from_the_same_tree(first->getParentPtr(), second));
+			return (fromTheSameTree(first->getParentPtr(), second));
 		}
 		else if (second->getParentPtr() != NULL)
 		{
-			return (from_the_same_tree(first, second->getParentPtr()));
+			return (fromTheSameTree(first, second->getParentPtr()));
 		}
 	}
 }

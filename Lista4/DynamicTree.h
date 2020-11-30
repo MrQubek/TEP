@@ -1,19 +1,47 @@
-#include "DynamicTree.h"
+#pragma once
 
-DynamicTree::DynamicTree() {
-	root = new DynamicNode();
+#include"DynamicNode.h"
+
+template <typename T> class DynamicTree
+{
+private:
+
+	DynamicNode<T>* root;
+
+public:
+	DynamicTree<T>();
+
+	~DynamicTree();
+
+	DynamicNode<T>* getRoot();
+
+	void printTree();
+
+	bool moveSubtree(DynamicNode<T>* newParent, DynamicNode<T>* newChild);
+
+	void buildDefaultTestTree();
+
+	bool fromTheSameTree(DynamicNode<T>* first, DynamicNode<T>* second);
+};
+
+template <typename T>
+DynamicTree<T>::DynamicTree() {
+	root = new DynamicNode<T>();
 }
 
-DynamicTree::~DynamicTree() {
+template <typename T>
+DynamicTree<T>::~DynamicTree() {
 	delete root;
 }
 
-DynamicNode* DynamicTree::getRoot() {
+template <typename T>
+DynamicNode<T>* DynamicTree<T>::getRoot() {
 	return root;
 }
 
-void DynamicTree::printTree() {
-	std::vector<DynamicNode* > nodesToPrint;
+template <typename T>
+void DynamicTree<T>::printTree() {
+	std::vector<DynamicNode<T>* > nodesToPrint;
 	nodesToPrint.push_back(root);
 	int nodesAtCurrentLvl = 1;
 	int nodesAtNextLvl = 0;
@@ -34,8 +62,9 @@ void DynamicTree::printTree() {
 	} while (!nodesToPrint.empty());
 }
 
-bool DynamicTree::moveSubtree(DynamicNode* newParent, DynamicNode* newChild) {
-	if (newParent==newChild) {
+template <typename T>
+bool DynamicTree<T>::moveSubtree(DynamicNode<T>* newParent, DynamicNode<T>* newChild) {
+	if (newParent == newChild) {
 		return false;
 	}
 	else
@@ -46,7 +75,8 @@ bool DynamicTree::moveSubtree(DynamicNode* newParent, DynamicNode* newChild) {
 
 }
 
-void DynamicTree::buildDefaultTestTree() {
+template <>
+void DynamicTree<int>::buildDefaultTestTree() {
 	root->addNewChild();
 	root->addNewChild();
 	root->getChild(0)->setValue(NODE_1_VAL);
@@ -61,7 +91,8 @@ void DynamicTree::buildDefaultTestTree() {
 	root->getChild(1)->getChild(1)->setValue(NODE_22_VAL);
 }
 
-bool DynamicTree::fromTheSameTree(DynamicNode* first, DynamicNode* second) {
+template <typename T>
+bool DynamicTree<T>::fromTheSameTree(DynamicNode<T>* first, DynamicNode<T>* second) {
 	if (first->getParentPtr() == NULL && second->getParentPtr() == NULL) {
 		if (first == second) {
 			return true;

@@ -24,7 +24,7 @@ public:
 
 	bool moveSubtree(StaticNode* newParent, StaticNode* newChild);
 
-	bool from_the_same_tree(StaticNode* first, StaticNode* second);
+	bool fromTheSameTree(StaticNode* first, StaticNode* second);
 
 };
 

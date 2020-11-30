@@ -40,14 +40,14 @@ int main() {
 	tree2.buildDefaultTestTree();
 
 
-	if (tree.from_the_same_tree(tree.getRoot()->getChild(0), tree.getRoot()->getChild(1)))
+	if (tree.fromTheSameTree(tree.getRoot()->getChild(0), tree.getRoot()->getChild(1)))
 		std::cout << BRANCHES_IN_TREE;
 	else
 	{
 		std::cout << BRANCHES_NOT_IN_TREE;
 	}
 
-	if (tree.from_the_same_tree(tree.getRoot()->getChild(0), tree2.getRoot()->getChild(1)))
+	if (tree.fromTheSameTree(tree.getRoot()->getChild(0), tree2.getRoot()->getChild(1)))
 		std::cout << BRANCHES_IN_TREE;
 	else
 	{
