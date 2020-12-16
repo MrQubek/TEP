@@ -1,11 +1,11 @@
 #pragma once
 
-class CRefCounter
+class ReferenceCounter
 {
 private:
 	int count;
 public:
-	CRefCounter() { count = 0; }
+	ReferenceCounter() { count = 0; }
 	int add() { return(++count); }
 	int dec() { return(--count); }
 	int get() { return(count); }
@@ -14,19 +14,19 @@ public:
 template <typename T> class SmartPointer
 {
 private:
-	CRefCounter* ptrCounter;
-	T* ptr;
+	ReferenceCounter* ptrCounter;
+	T* ptrObject;
 public:
 	SmartPointer<T>(T* pointer)
 	{
-		ptr = pointer;
-		ptrCounter = new CRefCounter();
+		ptrObject = pointer;
+		ptrCounter = new ReferenceCounter();
 		ptrCounter->add();
 	}
 
 	SmartPointer<T>(const SmartPointer<T>& other)
 	{
-		ptr = other.ptr;
+		ptrObject = other.ptr;
 		ptrCounter = other.ptrCounter;
 		ptrCounter->add();
 	}
@@ -35,25 +35,27 @@ public:
 	{
 		if (ptrCounter->dec() == 0)
 		{
-			delete ptr;
+			delete ptrObject;
 			delete ptrCounter;
 		}
 	}
-	
-	T& operator*() { return(*ptr); }
-	
-	T* operator->() { return(ptr); }
+
+	T& operator*() { return(*ptrObject); }
+
+	T* operator->() { return(ptrObject); }
 
 	SmartPointer<T>& operator = (const SmartPointer<T>& other) {
-		if (ptrCounter->dec() == 0)
-		{
-			delete ptr;
-			delete ptrCounter;
-		}
+		if (this != other) {
+			if (ptrCounter->dec() == 0)
+			{
+				delete ptrObject;
+				delete ptrCounter;
+			}
 
-		ptr = other.ptr;
-		ptrCounter = other.ptrCounter;
-		ptrCounter->add();
+			ptrObject = other.ptrObject;
+			ptrCounter = other.ptrCounter;
+			ptrCounter->add();
+		}
 		return *this;
 	}
 
