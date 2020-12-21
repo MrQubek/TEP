@@ -19,6 +19,8 @@ private:
 
 	void copy(const CTableMove& otherCTable);
 
+	void setTabPtrToNull();
+
 public:
 
 	CTableMove();
@@ -26,6 +28,8 @@ public:
 	CTableMove(const std::string& tabName, const int& tabSize);
 
 	CTableMove(const CTableMove& otherCTable);
+
+	CTableMove(CTableMove&& other);
 
 	~CTableMove();
 
@@ -39,6 +43,8 @@ public:
 
 	bool resizeTab(int newSize);
 
+	int* getTabPtr();
+
 	int getTabSize();
 
 	int getTabElem(int index);
@@ -49,9 +55,11 @@ public:
 
 	CTableMove operator = (const CTableMove& other);
 
-	CTableMove operator + (const CTableMove& other);
+	CTableMove&& operator + (const CTableMove& other);
 
-	CTableMove operator * (const int value);
+	CTableMove&& operator * (const int value);
+
+	CTableMove operator = (CTableMove&& other);
 
 	void operator *= (const int value);
 };

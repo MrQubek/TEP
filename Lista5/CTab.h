@@ -13,7 +13,7 @@ public:
 
 	CTab operator=(const CTab& cOther);
 
-	CTab operator=(CTab&& cOther);
+	CTab& operator=(CTab&& cOther);
 
 	~CTab();
 	bool bSetSize(int iNewSize);
@@ -23,3 +23,5 @@ private:
 	int* pi_tab;
 	int i_size;
 };
+
+CTab cCreateTab();

@@ -32,14 +32,15 @@ CTab CTab::operator=(const CTab& cOther)
 	return(*this);
 }
 
-CTab CTab::operator=(CTab&& cOther) {
+CTab& CTab::operator=(CTab&& cOther) {
 	if (this != &cOther) {
 		if (pi_tab != NULL)
 			delete[] pi_tab;
 		pi_tab = cOther.pi_tab;
 		i_size = cOther.i_size;
 		cOther.pi_tab = NULL;
-		std::cout << "op= MOVE ";
+		cOther.i_size = 0;
+		std::cout << "op=_MOVE ";
 	}
 	return(*this);
 }

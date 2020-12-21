@@ -49,7 +49,6 @@ CTable::~CTable() {
 
 
 CTable* CTable::pcClone() {
-	//CTable* ptr = new CTable(*this);
 	CTable* ptr = new CTable(this->getTabName(), this->getTabSize());
 	ptr->copyTabValues(*this);
 	return ptr;

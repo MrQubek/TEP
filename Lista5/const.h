@@ -5,6 +5,7 @@
 const int C_5 = 5;
 const char C_NEW_LINE = '\n';
 const char C_SPACE = ' ';
+const std::string C_TILDES = "~~~~~~~~~~";
 const std::string C_OK = "OK";
 const std::string C_NOPE = "NOPE";
 
@@ -15,10 +16,18 @@ const std::string CTABLE_PARAMETR = "parametr: ";
 const std::string CTABLE_COPY = "_copy";
 const std::string CTABLE_COPING = "kopiuj: ";
 const std::string CTABLE_DELETING = "usuwam: ";
+const std::string CTABLE_ADD = "_+";
+const std::string CTABLE_MUL_SCAL = "_*skalar";
+const std::string CTABLE_MUL_VECT = "_*wektor";
 
-const std::string ZAD_1_2_3 = "zad 1, 2, 3";
+const std::string CTABLE_MOVE = "_move";
+const std::string CTABLE_MOVE_ASSIGN = "_move=";
+const std::string CTABLE_MOVE_ADD = "_move+";
+const std::string CTABLE_MOVE_MUL_SCAL = "_move*skalar";
+const std::string CTABLE_MOVE_MUL_VECT = "_move*wektor";
+
+const std::string CTABLE_MOVE_DEFAULT_NAME = "ctabMove";
+
+const std::string ZAD_1_2 = "zad 1 and 2";
 const std::string ZAD_4 = "zad 4";
 const std::string ZAD_5 = "zad 5";
-
-const int X_DIM = 4;
-const int Y_DIM = 3;

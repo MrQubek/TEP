@@ -26,8 +26,13 @@ void CTableMove::copy(const CTableMove& otherCTable) {
 	copyTabValues(otherCTable);
 }
 
+void CTableMove::setTabPtrToNull() {
+	tab = NULL;
+	tabSize = 0;
+}
+
 CTableMove::CTableMove() {
-	initVariables(CTABLE_DEFAULT_NAME, CTABLE_DEFAULT_SIZE);
+	initVariables(CTABLE_MOVE_DEFAULT_NAME, CTABLE_DEFAULT_SIZE);
 	std::cout << CTABLE_NO_PARAM << tabName << C_NEW_LINE;
 }
 
@@ -40,6 +45,13 @@ CTableMove::CTableMove(const CTableMove& otherCTable) {
 	initVariables(otherCTable.tabName + CTABLE_COPY, otherCTable.tabSize);
 	copyTabValues(otherCTable);
 	std::cout << CTABLE_COPING << otherCTable.tabName << C_NEW_LINE;
+}
+
+CTableMove::CTableMove(CTableMove&& other) {
+	tabName = other.getTabName() + CTABLE_MOVE;
+	tab = other.getTabPtr();
+	tabSize = other.getTabSize();
+	other.setTabPtrToNull();
 }
 
 CTableMove::~CTableMove() {
@@ -90,6 +102,10 @@ bool CTableMove::resizeTab(int newSize) {
 	return false;
 }
 
+int* CTableMove::getTabPtr() {
+	return tab;
+}
+
 int CTableMove::getTabSize() {
 	return tabSize;
 }
@@ -120,7 +136,7 @@ CTableMove CTableMove::operator = (const CTableMove& other) {
 	return *this;
 }
 
-CTableMove CTableMove::operator+ (const CTableMove& other) {
+CTableMove&& CTableMove::operator+ (const CTableMove& other) {
 	CTableMove* newTab = new CTableMove(tabName, this->tabSize + other.tabSize);
 	if (newTab->getTabSize() != 0) {
 		int index = 0;
@@ -131,16 +147,26 @@ CTableMove CTableMove::operator+ (const CTableMove& other) {
 			newTab->setTabElem(index, other.tab[index - this->tabSize]);
 		}
 	}
-	return *newTab;
+	return (std::move(*newTab));
 }
 
-CTableMove CTableMove::operator * (const int value) {
+CTableMove&& CTableMove::operator * (const int value) {
 	CTableMove* newTab = new CTableMove(tabName, tabSize);
 	for (int i = 0; i < tabSize; i++) {
 		newTab->setTabElem(i, this->getTabElem(i) * value);
 	}
-	return *newTab;
+	return (std::move(*newTab));
 }
+
+
+CTableMove CTableMove::operator = (CTableMove&& other) {
+	tabName = other.getTabName() + CTABLE_MOVE_ASSIGN;
+	tab = other.getTabPtr();
+	tabSize = other.getTabSize();
+	other.setTabPtrToNull();
+	return *this;
+}
+
 
 void CTableMove::operator *= (const int value) {
 	for (int i = 0; i < tabSize; i++) {
