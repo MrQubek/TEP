@@ -3,7 +3,7 @@
 #include"CTableMove.h"
 #include"SmartPointer.h"
 #include"CTab.h"
-
+#include"testClasses.h"
 
 int main() {
 
@@ -31,7 +31,7 @@ int main() {
 		//delete testInt;
 		//delete testString;
 
-		int test = 4;		
+		int test = 4;
 		//delete& test;
 	}
 
@@ -123,5 +123,39 @@ int main() {
 
 		std::cout << C_NEW_LINE;
 	}
+
+	{
+		std::cout << C_TILDES << C_NEW_LINE;
+		
+		/*parentClass parent;
+		parent.print();
+		childClass child;
+		child.print();
+
+		childClass * childPtr = &child;
+
+		parentClass* parentPtr = &parent;
+		parentPtr->print();
+		if (parentPtr = dynamic_cast<parentClass*>(childPtr)) {
+			parentPtr->print();
+		}*/
+
+		/*parentClass* parentPtr = &parent;
+		childClass* childPtr;
+		if (childPtr = dynamic_cast<childClass*>(parentPtr)) {
+			childPtr->print();
+		}*/
+
+		SmartPointer<parentClass> parent(new parentClass());
+		SmartPointer<childClass> child(new childClass());
+
+		parent->print();
+		child->print();
+
+		parent = child.dynamicCast<parentClass>();
+		parent->print();
+
+	}
+
 	return 0;
 }

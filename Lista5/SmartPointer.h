@@ -11,17 +11,28 @@ public:
 	int get() { return(count); }
 };
 
-template <typename T> class SmartPointer
+template <typename T>
+class SmartPointer
 {
 private:
 	ReferenceCounter* ptrCounter;
 	T* ptrObject;
+
+
 public:
+
 	SmartPointer<T>(T* pointer);
 
 	SmartPointer<T>(const SmartPointer<T>& other);
 
+	template <typename R>
+	SmartPointer<T>( SmartPointer<R>&  other);
+
 	~SmartPointer();
+
+	T* getPtrObject() { return ptrObject; }
+
+	ReferenceCounter* getReferenceCounter() { return ptrCounter; }
 
 	T& operator*() { return(*ptrObject); }
 
@@ -31,6 +42,8 @@ public:
 
 	SmartPointer<T> duplicate();
 
+	template <typename R>
+	SmartPointer<R> dynamicCast();
 };
 
 template <typename T>
@@ -44,9 +57,23 @@ SmartPointer<T>::SmartPointer(T* pointer)
 template <typename T>
 SmartPointer<T>::SmartPointer(const SmartPointer<T>& other)
 {
-	ptrObject = other.ptr;
+	ptrObject = other.ptrObject;
 	ptrCounter = other.ptrCounter;
 	ptrCounter->add();
+}
+
+template <typename T>
+template <typename R>
+SmartPointer<T>::SmartPointer( SmartPointer<R>&  other) {
+	ptrObject = dynamic_cast <T*> (other.getPtrObject());
+	if (ptrObject != NULL) {
+		ptrCounter = other.getReferenceCounter();
+		ptrCounter->add();
+	}
+	else {
+		ptrCounter = new ReferenceCounter();
+		ptrCounter->add();
+	}
 }
 
 template <typename T>
@@ -78,4 +105,10 @@ SmartPointer<T>& SmartPointer<T>::operator = (const SmartPointer<T>& other) {
 template <typename T>
 SmartPointer<T> SmartPointer<T>::duplicate() {
 	return SmartPointer<T>(new T(*ptrObject));
+}
+
+template <typename T>
+template <typename R>
+SmartPointer<R> SmartPointer<T>::dynamicCast() {
+	return SmartPointer<R>(*this);
 }

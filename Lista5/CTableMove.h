@@ -29,7 +29,7 @@ public:
 
 	CTableMove(const CTableMove& otherCTable);
 
-	CTableMove(CTableMove&& other);
+	CTableMove(CTableMove&& other)noexcept;
 
 	~CTableMove();
 
@@ -55,11 +55,11 @@ public:
 
 	CTableMove operator = (const CTableMove& other);
 
-	CTableMove&& operator + (const CTableMove& other);
+	CTableMove&& operator + (const CTableMove& other) noexcept;
 
-	CTableMove&& operator * (const int value);
+	CTableMove&& operator * (const int value) noexcept;
 
-	CTableMove operator = (CTableMove&& other);
+	CTableMove operator = (CTableMove&& other)noexcept;
 
 	void operator *= (const int value);
 };

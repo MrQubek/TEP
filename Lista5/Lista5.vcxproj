@@ -144,6 +144,7 @@
     <ClInclude Include="CTableMove.h" />
     <ClInclude Include="CTable.h" />
     <ClInclude Include="SmartPointer.h" />
+    <ClInclude Include="testClasses.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CTab.cpp" />

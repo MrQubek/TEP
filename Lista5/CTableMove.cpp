@@ -47,7 +47,7 @@ CTableMove::CTableMove(const CTableMove& otherCTable) {
 	std::cout << CTABLE_COPING << otherCTable.tabName << C_NEW_LINE;
 }
 
-CTableMove::CTableMove(CTableMove&& other) {
+CTableMove::CTableMove(CTableMove&& other) noexcept {
 	tabName = other.getTabName() + CTABLE_MOVE;
 	tab = other.getTabPtr();
 	tabSize = other.getTabSize();
@@ -136,7 +136,7 @@ CTableMove CTableMove::operator = (const CTableMove& other) {
 	return *this;
 }
 
-CTableMove&& CTableMove::operator+ (const CTableMove& other) {
+CTableMove&& CTableMove::operator+ (const CTableMove& other) noexcept {
 	CTableMove* newTab = new CTableMove(tabName, this->tabSize + other.tabSize);
 	if (newTab->getTabSize() != 0) {
 		int index = 0;
@@ -150,7 +150,7 @@ CTableMove&& CTableMove::operator+ (const CTableMove& other) {
 	return (std::move(*newTab));
 }
 
-CTableMove&& CTableMove::operator * (const int value) {
+CTableMove&& CTableMove::operator * (const int value) noexcept{
 	CTableMove* newTab = new CTableMove(tabName, tabSize);
 	for (int i = 0; i < tabSize; i++) {
 		newTab->setTabElem(i, this->getTabElem(i) * value);
@@ -159,7 +159,7 @@ CTableMove&& CTableMove::operator * (const int value) {
 }
 
 
-CTableMove CTableMove::operator = (CTableMove&& other) {
+CTableMove CTableMove::operator = (CTableMove&& other) noexcept {
 	tabName = other.getTabName() + CTABLE_MOVE_ASSIGN;
 	tab = other.getTabPtr();
 	tabSize = other.getTabSize();
