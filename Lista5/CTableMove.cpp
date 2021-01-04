@@ -160,6 +160,11 @@ CTableMove&& CTableMove::operator * (const int value) noexcept{
 
 
 CTableMove CTableMove::operator = (CTableMove&& other) noexcept {
+
+	if (tab != NULL) {
+		delete[] tab;
+	}
+
 	tabName = other.getTabName() + CTABLE_MOVE_ASSIGN;
 	tab = other.getTabPtr();
 	tabSize = other.getTabSize();
